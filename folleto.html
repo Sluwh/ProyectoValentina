@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad en Línea - Guía Informativa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1a1a2e 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(102, 126, 234, 0.08);
+            border-radius: 50%;
+            top: -250px;
+            right: -100px;
+            animation: float-slow 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(118, 75, 162, 0.08);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -50px;
+            animation: float-slow 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+            font-weight: 700;
+            position: relative;
+            padding-left: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .section h2:hover {
+            color: #667eea;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .section ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .section li {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.7;
+            transition: all 0.3s ease;
+        }
+
+        .section li:hover {
+            transform: translateX(8px);
+            color: #667eea;
+        }
+
+        .section li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border-left: 4px solid #667eea;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+            border-color: rgba(148, 163, 184, 0.2);
+        }
+
+        .card.warning {
+            border-left-color: #f59e0b;
+            background: rgba(78, 48, 0, 0.3);
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        .card.danger {
+            border-left-color: #ef4444;
+            background: rgba(127, 29, 29, 0.3);
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .card.success {
+            border-left-color: #10b981;
+            background: rgba(6, 78, 59, 0.3);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .card strong {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .card.warning strong { color: #f59e0b; }
+        .card.danger strong { color: #ef4444; }
+        .card.success strong { color: #10b981; }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #cbd5e1;
+        }
+
+        .card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .card.warning li::before { color: #f59e0b; }
+        .card.danger li::before { color: #ef4444; }
+        .card.success li::before { color: #10b981; }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.8;
+        }
+
+        footer p strong {
+            color: #667eea;
+        }
+
+        footer .footer-credits {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        footer .footer-credits strong {
+            color: #a78bfa;
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            width: 0;
+            z-index: 999;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .section {
+                margin-bottom: 3rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .section p {
+                font-size: 0.95rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .section li {
+                font-size: 0.95rem;
+                margin-bottom: 0.8rem;
+                padding-left: 1.8rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+                margin: 1.2rem 0;
+                border-radius: 10px;
+            }
+
+            .card strong {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .card li {
+                font-size: 0.95rem;
+                margin-bottom: 0.7rem;
+                padding-left: 1.5rem;
+            }
+
+            footer {
+                padding: 2.5rem 1.5rem;
+            }
+
+            footer .footer-credits {
+                font-size: 0.85rem;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .section {
+                margin-bottom: 2.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+                line-height: 1.6;
+            }
+
+            .section li {
+                font-size: 0.9rem;
+                margin-bottom: 0.7rem;
+                padding-left: 1.6rem;
+            }
+
+            .section li::before {
+                font-size: 1.1em;
+            }
+
+            .card {
+                padding: 1.2rem;
+                margin: 1rem 0;
+                border-left: 3px solid;
+            }
+
+            .card strong {
+                font-size: 0.95rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .card li {
+                font-size: 0.9rem;
+                margin-bottom: 0.6rem;
+                padding-left: 1.4rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            footer p {
+                font-size: 0.9rem;
+            }
+
+            footer .footer-credits {
+                font-size: 0.8rem;
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+
+    <nav>
+        <div class="nav-logo">SafeWeb</div>
+        <ul class="nav-links">
+            <li><a onclick="scrollToSection('grooming')">Grooming</a></li>
+            <li><a onclick="scrollToSection('ciberacoso')">Ciberacoso</a></li>
+            <li><a onclick="scrollToSection('tips')">Protección</a></li>
+            <li><a onclick="scrollToSection('recursos')">Recursos</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Tu Seguridad en Línea es Prioridad</h1>
+            <p>Aprende a protegerte del grooming, ciberacoso y amenazas digitales</p>
+            <button class="cta-button" onclick="scrollToSection('grooming')">Comienza Aquí</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Sección 1 -->
+        <div class="section" id="grooming">
+            <h2>¿Qué es el Grooming?</h2>
+            <p>El grooming es cuando un adulto intenta ganarse la confianza de un menor a través de internet. Puede ocurrir en redes sociales, chats, videojuegos o cualquier plataforma online.</p>
+            
+            <div class="card danger">
+                <strong>Cómo actúan los depredadores:</strong>
+                <ul>
+                    <li>Se hacen amigos ganándose tu confianza gradualmente</li>
+                    <li>Te aíslan de tus amigos y familia</li>
+                    <li>Te piden fotos o información personal</li>
+                    <li>Te amenazan o chantajean si no cooperas</li>
+                    <li>Pueden proponerte encuentros presenciales</li>
+                </ul>
+            </div>
+
+            <div class="card warning">
+                <strong>Señales de Alerta:</strong>
+                <ul>
+                    <li>Un adulto que se interesa demasiado en tu vida personal</li>
+                    <li>Preguntas sobre si estás solo o si tus padres te controlan</li>
+                    <li>Solicitud de fotos privadas o en ropa interior</li>
+                    <li>Propuestas de "ayuda" económica a cambio de favores</li>
+                    <li>Intentos de cambiar la conversación a temas privados</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sección 2 -->
+        <div class="section" id="ciberacoso">
+            <h2>Ciberacoso y Cyberbullying</h2>
+            <p>Es cuando alguien te acosa, intimida o humilla repetidamente a través de internet. A diferencia del acoso tradicional, el ciberacoso no desaparece cuando apagas el dispositivo.</p>
+
+            <div class="card danger">
+                <strong>Formas de Ciberacoso:</strong>
+                <ul>
+                    <li>Mensajes insultantes, amenazantes o intimidantes</li>
+                    <li>Difusión de rumores falsos sobre ti</li>
+                    <li>Exclusión deliberada de grupos o eventos online</li>
+                    <li>Compartir fotos o videos sin tu consentimiento</li>
+                    <li>Suplantación de identidad</li>
+                    <li>Crear perfiles falsos a tu nombre</li>
+                </ul>
+            </div>
+
+            <div class="card warning">
+                <strong>Impacto en tu Salud Mental:</strong>
+                <ul>
+                    <li>Depresión y ansiedad</li>
+                    <li>Baja autoestima y falta de confianza</li>
+                    <li>Aislamiento social</li>
+                    <li>Problemas de sueño</li>
+                    <li>Bajo rendimiento escolar</li>
+                    <li>En casos graves, autolesiones</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sección 3 -->
+        <div class="section" id="tips">
+            <h2>Cómo Protegerte</h2>
+            <p>La mejor defensa es la prevención. Aquí hay estrategias prácticas para mantenerte seguro en línea:</p>
+
+            <div class="card success">
+                <strong>Protección de tu Cuenta:</strong>
+                <ul>
+                    <li>Usa contraseñas fuertes (al menos 12 caracteres, con números y símbolos)</li>
+                    <li>Cambia tu contraseña cada 3 meses</li>
+                    <li>Activa la autenticación de dos factores (2FA)</li>
+                    <li>No compartas tu contraseña con nadie, ni con amigos cercanos</li>
+                    <li>Cierra sesión después de usar una computadora pública</li>
+                </ul>
+            </div>
+
+            <div class="card success">
+                <strong>Privacidad en Redes Sociales:</strong>
+                <ul>
+                    <li>Configura tu perfil como privado (solo amigos cercanos)</li>
+                    <li>No aceptes solicitudes de desconocidos</li>
+                    <li>Evita usar tu nombre real como usuario</li>
+                    <li>No compartas tu número de teléfono o correo públicamente</li>
+                    <li>Revisa regularmente tu lista de amigos</li>
+                </ul>
+            </div>
+
+            <div class="card success">
+                <strong>Cuidado con tu Información:</strong>
+                <ul>
+                    <li>Piensa antes de publicar fotos o información personal</li>
+                    <li>Desactiva la ubicación en tiempo real (GPS)</li>
+                    <li>No compartas tu dirección, escuela o horarios</li>
+                    <li>Evita publicar cuando estás de vacaciones</li>
+                    <li>No difundas números de teléfono o datos de familiares</li>
+                </ul>
+            </div>
+
+            <div class="card success">
+                <strong>Navegación Segura:</strong>
+                <ul>
+                    <li>Mantén tu antivirus y sistemas operativos actualizados</li>
+                    <li>No hagas clic en enlaces sospechosos</li>
+                    <li>No descargues archivos de fuentes desconocidas</li>
+                    <li>Usa navegadores seguros y sitios HTTPS</li>
+                    <li>Evita usar WiFi público sin VPN</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sección 4 -->
+        <div class="section">
+            <h2>Si Eres Víctima de Ciberacoso</h2>
+
+            <div class="card warning">
+                <strong>Pasos Inmediatos:</strong>
+                <ul>
+                    <li><strong>Detente:</strong> No respondas a provocaciones ni insultos</li>
+                    <li><strong>Guarda Pruebas:</strong> Captura pantallas de todos los mensajes</li>
+                    <li><strong>Bloquea:</strong> Bloquea al acosador en todas las plataformas</li>
+                    <li><strong>Reporta:</strong> Denuncia a la plataforma y a las autoridades</li>
+                    <li><strong>Habla:</strong> Cuéntale a un adulto de confianza (padres, maestros)</li>
+                    <li><strong>Busca Ayuda:</strong> Consulta con un psicólogo o consejero escolar</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 2rem; font-weight: 600; color: #ef4444;">IMPORTANTE: No es tu culpa. El acosador es el responsable, no tú. Busca ayuda de un adulto de confianza.</p>
+        </div>
+
+        <!-- Sección 5 -->
+        <div class="section" id="recursos">
+            <h2>Recursos de Ayuda y Denuncia</h2>
+            <p>Si estás en peligro inmediato, llama a la policía (911 en EE.UU., 112 en Europa)</p>
+
+            <div class="card success">
+                <strong>Organizaciones que Pueden Ayudarte:</strong>
+                <ul>
+                    <li><strong>Centro Cibernético Policial:</strong> Para denuncias de delitos informáticos</li>
+                    <li><strong>Líneas de Ayuda a Menores:</strong> Disponibles en tu país</li>
+                    <li><strong>NetSafe / Defensoría del Niño:</strong> Recursos especializados</li>
+                    <li><strong>Organizaciones de DDHH:</strong> Apoyo legal y emocional</li>
+                    <li><strong>Psicólogos/Consejeros Escolares:</strong> Apoyo psicológico</li>
+                    <li><strong>Teléfono de Prevención del Suicidio:</strong> Líneas de atención 24/7</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sección 6 -->
+        <div class="section">
+            <h2>Lo Más Importante que Debes Recordar</h2>
+
+            <div class="card success">
+                <ul>
+                    <li>Tu seguridad física y emocional es lo primero</li>
+                    <li>No es tu culpa si eres víctima de acoso o grooming</li>
+                    <li>Los adultos responsables están para ayudarte y protegerte</li>
+                    <li>Internet es una herramienta poderosa, úsala de forma inteligente</li>
+                    <li>Si ves a alguien en peligro, reporta a las autoridades</li>
+                    <li>Nunca te avergüences de pedir ayuda</li>
+                    <li>Eres valioso y mereces estar seguro en línea</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Folleto Informativo - Seguridad Digital</strong></p>
+        <p>Comparte esta información con tus amigos y familia</p>
+        <p>Juntos creamos un internet más seguro para todos</p>
+        
+        <div class="footer-credits">
+            <p><strong>Estudiante:</strong> Gala Valentina Prafil</p>
+            <p><strong>Desarrollador Web Frontend:</strong> Marcel Matiaude</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">© 2024 SafeWeb - Tu seguridad en línea importa</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.querySelector('.scroll-progress').style.width = scrollPercent + '%';
+        });
+
+        // Smooth Scroll to Section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Intersection Observer para animaciones al scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        console.log('SafeWeb cargado correctamente');
+    </script>
+</body>
+</html>
